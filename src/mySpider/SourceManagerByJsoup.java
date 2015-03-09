@@ -17,15 +17,15 @@ public class SourceManagerByJsoup {
 				
 		// 要根据页面的不同，选择不同的解析函数
 		if (isOrdinaryHtmlPage(html)) {	// 普通页面
-			db.name = getName(html);
-			db.description = getDesc(html);
-			db.content = getContent(html);
-			db.contentDetail = getContentDetail(html);
+			db.setName(getName(html));
+			db.setDescription(getDesc(html));
+			db.setContent(getContent(html));
+			db.setContentDetail(getContentDetail(html));
 		} else {	// 权威医学科普传播网络平台页面
-			db.name = getNameSpecial(html);
-			db.description = getDescSpecial(html);
-			db.content = getContent(html);
-			db.contentDetail = getContentDetail(html);
+			db.setName(getNameSpecial(html));
+			db.setDescription(getDescSpecial(html));
+			db.setContent(getContent(html));
+			db.setContentDetail(getContentDetail(html));
 		}
 
 		return db;
