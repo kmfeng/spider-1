@@ -7,7 +7,7 @@ import java.util.List;
 public class Common {
 	
 	/*
-	 * urlList ´æ·ÅĞèÒªÅÀÈ¡µÄÁ¬½ÓµÄÁĞ±í
+	 * urlList å­˜æ”¾éœ€è¦çˆ¬å–çš„è¿æ¥çš„åˆ—è¡¨
 	 */
 	private static List<String> fukeList = new ArrayList<String>(
 			Arrays.asList( 
@@ -28,21 +28,21 @@ public class Common {
 					"http://baike.baidu.com/view/4318139.htm"));
 	
 	private static List<String> szList = new ArrayList<String>(
-			Arrays.asList("http://baike.baidu.com/view/102216.htm", // ÒõµÀÑ×
-					"http://baike.baidu.com/view/826362.htm", // ÒõÄÒÊªÕî
-					"http://baike.baidu.com/view/289204.htm?fromtitle=%E8%82%9B%E9%97%A8%E6%B9%BF%E7%96%B9&fromid=799967&type=syn",	// ¸ØÃÅÊªÕî
-					"http://baike.baidu.com/view/865301.htm",	// ¹êÍ·Ñ×
-					"http://baike.baidu.com/view/81718.htm"	//ÄòµÀÑ×
+			Arrays.asList("http://baike.baidu.com/view/102216.htm", // é˜´é“ç‚
+					"http://baike.baidu.com/view/826362.htm", // é˜´å›Šæ¹¿ç–¹
+					"http://baike.baidu.com/view/289204.htm?fromtitle=%E8%82%9B%E9%97%A8%E6%B9%BF%E7%96%B9&fromid=799967&type=syn",	// è‚›é—¨æ¹¿ç–¹
+					"http://baike.baidu.com/view/865301.htm",	// é¾Ÿå¤´ç‚
+					"http://baike.baidu.com/view/81718.htm"	//å°¿é“ç‚
 					));
 	
 	private static List<String> sexList = new ArrayList<String>(
-			Arrays.asList("http://baike.baidu.com/view/26104.htm",	// ÁÜ²¡
-					"http://baike.baidu.com/view/23940.htm"	// Ã·¶¾
+			Arrays.asList("http://baike.baidu.com/view/26104.htm",	// æ·‹ç—…
+					"http://baike.baidu.com/view/23940.htm"		// æ¢…æ¯’
 					));
 	
 	
 	/*
-	 * ¶ÔÍâÌá¹©µÄ·½·¨
+	 * å¯¹å¤–æä¾›çš„æ–¹æ³•
 	 */
 	public static List<String> getFukeList() {
 		return fukeList;

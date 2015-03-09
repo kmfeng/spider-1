@@ -17,34 +17,34 @@ public class firstSpider {
 		List<DiseaseBean> szDiseaseBeanList = new ArrayList<DiseaseBean>();
 		List<DiseaseBean> sexDiseaseBeanList = new ArrayList<DiseaseBean>();
 		
-		// ÅÀ¸¾¿Æ
+		// çˆ¬å¦‡ç§‘
 		for (String url : Common.getFukeList()) {
-			// »ñÈ¡ URL µÄÔ­Ê¼ÍøÒ³ÄÚÈİ
+			// è·å– URL çš„åŸå§‹ç½‘é¡µå†…å®¹
 			String rawSource = DownLoader.getUrlContent(url);
-			// ´ÓÔ­Ê¼ÍøÒ³»ñÈ¡ DiseaseDetail ¶ÔÏóÄÚÈİ·ÅÈëÁĞ±í
+			// ä»åŸå§‹ç½‘é¡µè·å– DiseaseDetail å¯¹è±¡å†…å®¹æ”¾å…¥åˆ—è¡¨
 			fukeDiseaseBeanList.add(SourceManagerByJsoup.getDiseaseFromRaw(rawSource));
 		}
 		
-		// ÅÀÆ¤·ô¿Æ
+		// çˆ¬çš®è‚¤ç§‘
 		for (String url : Common.getPifuList()) {
 			String rawSource = DownLoader.getUrlContent(url);
 			pifuDiseaseBeanList.add(SourceManagerByJsoup.getDiseaseFromRaw(rawSource));
 		}
 		
-		// ÅÀÉúÖ³¿Æ
+		// çˆ¬ç”Ÿæ®–ç§‘
 		for (String url : Common.getSZList()) {
 			String rawSource = DownLoader.getUrlContent(url);
 			szDiseaseBeanList.add(SourceManagerByJsoup.getDiseaseFromRaw(rawSource));
 		}
 		
-		// ÅÀĞÔ²¡
+		// çˆ¬æ€§ç—…
 		for (String url : Common.getSexList()) {
 			String rawSource = DownLoader.getUrlContent(url);
 			sexDiseaseBeanList.add(SourceManagerByJsoup.getDiseaseFromRaw(rawSource));
 		}
 		
 		/*
-		 * ÒÔĞòÁĞ»¯µÄ·½Ê½´æ´¢
+		 *  ä»¥åºåˆ—åŒ–çš„æ–¹å¼å­˜å‚¨
 		 */
 		FileTools.writeDiseaseBeanListToFile(fukeDiseaseBeanList, "fuke.txt");
 		FileTools.writeDiseaseBeanListToFile(pifuDiseaseBeanList, "pifu.txt");

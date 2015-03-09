@@ -12,16 +12,16 @@ import JavaBeans.DiseaseBean;
 
 public class SourceManagerByJsoup {
 	public static DiseaseBean getDiseaseFromRaw(String html) {
-		// ´æ·Å·µ»ØµÄ DiseaseBean Êı¾İ
-		DiseaseBean db = new DiseaseBean();
+		// DiseaseBean ç”¨äºå­˜å‚¨è§£æå¾—æ¥çš„ html å†…å®¹
+		DiseaseBean db = new DiseaseBean(); 
 				
-		// Òª¸ù¾İÒ³ÃæµÄ²»Í¬£¬Ñ¡Ôñ²»Í¬µÄ½âÎöº¯Êı
-		if (isOrdinaryHtmlPage(html)) {	// ÆÕÍ¨Ò³Ãæ
+		// æ ¹æ®ç½‘é¡µæ ¼å¼çš„ä¸åŒï¼Œname description ä½¿ç”¨ä¸åŒçš„è§£æå‡½æ•°
+		if (isOrdinaryHtmlPage(html)) {	// æ™®é€šé¡µé¢
 			db.setName(getName(html));
 			db.setDescription(getDesc(html));
 			db.setContent(getContent(html));
 			db.setContentDetail(getContentDetail(html));
-		} else {	// È¨ÍşÒ½Ñ§¿ÆÆÕ´«²¥ÍøÂçÆ½Ì¨Ò³Ãæ
+		} else {	// æƒå¨åŒ»å­¦é¡µé¢
 			db.setName(getNameSpecial(html));
 			db.setDescription(getDescSpecial(html));
 			db.setContent(getContent(html));
@@ -31,25 +31,20 @@ public class SourceManagerByJsoup {
 		return db;
 	}
 	/*
-	 * ÅĞ¶Ï html Ò³ÃæµÄÀà±ğ£¬¸ù¾İÔ´ÂëÖĞÊÇ·ñº¬ÓĞ side-anchor ×Ö·û´®£¬Ã»ÓĞµÄÊÇÆÕÍ¨Ò³Ãæ
-	 * 1. ÆÕÍ¨Ò³Ãæ --> true
-	 * 2. È¨ÍşÒ½Ñ§¿ÆÆÕ´«²¥ÍøÂçÆ½Ì¨Ò³Ãæ --> false
+	 * 1. æ™®é€š --> true
+	 * 2. æƒå¨åŒ»å­¦ --> false
 	 */
 	private static boolean isOrdinaryHtmlPage(String html) {
 		return ! html.contains("side-anchor");
 	}
 
-	/*
-	 * ½âÎö Name
-	 */
+
 	private static String getName(String html) {
 		String name = "";
 		Document doc = Jsoup.parse(html);
 //		Element nameEle = doc.getElementsByAttributeValue("class", "lemmaTitle").first();
-		// ÒòÎª html µÄ²»¹æ·¶£¬²»Ò»¶¨ lemmaTitle ÕıºÃ¾ÍÊÇ class µÄÖµ£¬µ«ÊÇÖ»Òª°üº¬ lemmaTitle ¾ÍÊÇÌâÄ¿
 		Element nameEle = doc.select("[class*=lemmaTitle]").first();
 		if (nameEle != null) {
-			// ÒòÎª°üº¬ lemmaTitle µÄString¿ÉÄÜ²»Ö»ÓĞÌâÄ¿£¬ËùÒÔÓÃ¿Õ¸ñ spilt Ö®ºóÈ¡ÆäÊ××Ö·û´®
 			name = nameEle.text().split(" ")[0];
 		}
 		
@@ -60,10 +55,8 @@ public class SourceManagerByJsoup {
 		String name = "";
 		Document doc = Jsoup.parse(html);
 //		Element nameEle = doc.getElementsByAttributeValue("class", "lemmaTitle").first();
-		// ÒòÎª html µÄ²»¹æ·¶£¬²»Ò»¶¨ lemmaTitle ÕıºÃ¾ÍÊÇ class µÄÖµ£¬µ«ÊÇÖ»Òª°üº¬ lemmaTitle ¾ÍÊÇÌâÄ¿
 		Element nameEle = doc.select("[class*=lemmaTitle]").first();
 		if (nameEle != null) {
-			// ÒòÎª°üº¬ lemmaTitle µÄString¿ÉÄÜ²»Ö»ÓĞÌâÄ¿£¬ËùÒÔÓÃ¿Õ¸ñ spilt Ö®ºóÈ¡ÆäÊ××Ö·û´®
 			name = nameEle.text().split(" ")[0];
 		}
 		
@@ -71,16 +64,9 @@ public class SourceManagerByJsoup {
 		return name;
 	}
 
-	/*
-	 * ½âÎö Desc
-	 */
 	private static String getDesc(String html) {
 		String desc = "";
 		Document doc = Jsoup.parse(html);
-//		Element ele = doc.getElementById("posterCon");
-//		if (ele == null) {
-//			ele = doc.getElementsByAttributeValue("class", "desc").first();
-//		}
 		
 		Element descEle = doc.getElementsByAttributeValue("class", "card-summary-content").first();
 		desc = descEle.text();
@@ -91,10 +77,6 @@ public class SourceManagerByJsoup {
 	private static String getDescSpecial(String html) {
 		String desc = "";
 		Document doc = Jsoup.parse(html);
-//		Element ele = doc.getElementById("posterCon");
-//		if (ele == null) {
-//			ele = doc.getElementsByAttributeValue("class", "desc").first();
-//		}
 		
 		Element descEle = doc.getElementsByAttributeValue("class", "desc").first();
 		if (descEle == null) {
@@ -106,11 +88,6 @@ public class SourceManagerByJsoup {
 		return desc;
 	}
 	
-	
-	
-	/*
-	 * ½âÎöÄ¿Â¼
-	 */
 	private static List<String> getContent(String html) {
 		List<String> content = new ArrayList<String>();
 
@@ -126,25 +103,22 @@ public class SourceManagerByJsoup {
 		return content;
 	}
 
-	/*
-	 * ½âÎöÃ¿¸öÄ¿Â¼ÏÂÃæµÄÄÚÈİ
-	 */
 	private static List<String> getContentDetail(String html) {
-		// ´æ·ÅÃ¿¸öÄ¿Â¼ÏîÏÂÃæµÄÄÚÈİ£¬ÁĞ±íµÄ³¤¶ÈÓëÄ¿Â¼µÄÊıÄ¿ÏàµÈ
+		// å­˜æ”¾æ¯ä¸ªç›®å½•é¡¹ä¸‹é¢çš„å†…å®¹ï¼Œåˆ—è¡¨çš„é•¿åº¦ä¸ç›®å½•çš„æ•°ç›®ç›¸ç­‰
 		List<String> contentDetail = new ArrayList<String>();
 
 		Document doc = Jsoup.parse(html);
-		// Õû¸ö DOM Ê÷
+		//  æ•´ä¸ª DOM æ ‘
 		Element all = doc.getElementById("lemmaContent-0");
-		// Ä¿Â¼
+		// ç›®å½•
 		Elements content = all.getElementsByAttributeValue("class","headline-1");
 		List<Integer> index = new ArrayList<Integer>();
 
-		// ËùÓĞµÄ para ÄÚÈİ
+		// æ‰€æœ‰çš„ para å†…å®¹
 		Elements details = all.getElementsByAttributeValue("class", "para");
 		// System.out.println("\n");
 
-		// ½«Ä¿Â¼½ÚµãÔÚ all ÖĞµÄĞòºÅ¼ÇÂ¼
+		// å°†ç›®å½•èŠ‚ç‚¹åœ¨ all ä¸­çš„åºå·è®°å½•
 		for (Element e : content) {
 			index.add(e.siblingIndex());
 			// System.out.println(all.childNodeSize() + " --> " +
@@ -154,7 +128,7 @@ public class SourceManagerByJsoup {
 		// System.out.println("\n");
 
 		int indexLength = index.size();
-		// Ëã³öÃ¿¸öÄ¿Â¼ÏÂÃæµÄÏêÏ¸ÄÚÈİµÄÊıÄ¿
+		//  ç®—å‡ºæ¯ä¸ªç›®å½•ä¸‹é¢çš„è¯¦ç»†å†…å®¹çš„æ•°ç›®
 		List<Integer> sizeEachList = new ArrayList<Integer>();
 		for (int j = 1; j < indexLength; ++j) {
 			sizeEachList.add(index.get(j) - index.get(j - 1) - 2);
@@ -162,9 +136,9 @@ public class SourceManagerByJsoup {
 		}
 		System.out.println("size --> " + sizeEachList.size() + "\n");
 
-		// ¿ªÍ·Ìí¼Ó 0
+		// å¼€å¤´æ·»åŠ  0
 		// sizeEachList.add(0, 0); 
-		// Ä©Î²Ìí¼Ó detail µÄÈİÁ¿
+		// æœ«å°¾æ·»åŠ  detail çš„å®¹é‡
 		sizeEachList.add(sizeEachList.size(), details.size() - 1); 
 		int l = sizeEachList.size();
 
@@ -172,17 +146,17 @@ public class SourceManagerByJsoup {
 		for (int i = 0; i < l - 1; ++i) {
 //			System.out.println("----------------------------> " + sizeEachList.get(i));
 
-			// sb ´æ·Åµ¥¸öÄ¿Â¼ÏîÏÂµÄÄÚÈİ
+			// sb å­˜æ”¾å•ä¸ªç›®å½•é¡¹ä¸‹çš„å†…å®¹
 			StringBuilder sb = new StringBuilder();
 			for (int j = 0; j < sizeEachList.get(i); ++j) {
 				if (j+jj >= details.size()) {
 					break;
 				}
 				sb.append(details.get(j + jj).text() + '\n');
-				System.out.println("getContentDetail +++>>> " + "µÚ " + i + "×é ----> " + details.get(j + jj).text());
+				System.out.println("getContentDetail +++>>> " + "é”Ÿæ–¤æ‹· " + i + "é”Ÿæ–¤æ‹· ----> " + details.get(j + jj).text());
 			}
 			jj = jj + sizeEachList.get(i);
-			// ½«¸ÃÄ¿Â¼ÏîÏÂµÄÄÚÈİ´æÈë List
+			// å°†è¯¥ç›®å½•é¡¹ä¸‹çš„å†…å®¹å­˜å…¥ List
 			contentDetail.add(sb.toString());
 //			System.out.println("contentDetail.get(" + i + ") --> " + contentDetail.get(i));
 		}

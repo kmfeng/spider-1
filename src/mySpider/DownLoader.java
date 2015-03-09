@@ -8,34 +8,34 @@ import java.net.URLConnection;
 
 public class DownLoader {
 	/*
-	 * ¸ù¾İ´«ÈëµÄ URL£¬ÏÂÔØ URL µÄÄÚÈİ
+	 * æ ¹æ®ä¼ å…¥çš„ URLï¼Œä¸‹è½½ URL çš„å†…å®¹
 	 */
 	public static String getUrlContent(String urlStr) {
-		// ½«Òª·ÃÎÊµÄÁ¬½Ó
+		// å°†è¦è®¿é—®çš„è¿æ¥
 		String url = urlStr;
-		// ´æ´¢ÍøÒ³ÄÚÈİ
+		// å­˜å‚¨ç½‘é¡µå†…å®¹
 		String result = "";
-		// »º³å×Ö·ûÊäÈëÁ÷
+		// ç¼“å†²å­—ç¬¦è¾“å…¥æµ
 		BufferedReader in = null;
 
 		try {
 			// String --> URL
 			URL realUrl = new URL(url);
-			// ½¨Á¢Á¬½Ó
+			// å»ºç«‹è¿æ¥
 			URLConnection connection = realUrl.openConnection();
-			// Êµ¼ÊÁ¬½Ó
+			// å®é™…è¿æ¥
 			connection.connect();
-			// ³õÊ¼»¯ BufferedReader ¶ÁÈ¡ URL µÄÏìÓ¦
+			// åˆå§‹åŒ– BufferedReader è¯»å– URL å“åº”
 			in = new BufferedReader(new InputStreamReader(
-					connection.getInputStream(), "UTF-8")); // ´Ë´¦×¢Òâ UTF-8 ±àÂëÎÊÌâ
-			// ÁÙÊ±´æÈ¡×¥È¡µÄÃ¿Ò»ĞĞµÄÊı¾İ
+					connection.getInputStream(), "UTF-8")); // UTF-8 ç¼–ç 
+			// ä¸´æ—¶å­˜å–æŠ“å–çš„æ¯ä¸€è¡Œçš„æ•°æ®
 			String line;
 			while ((line = in.readLine()) != null) {
 				result += line;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally { // finally ÖĞ¹Ø±ÕÊäÈëÁ÷
+		} finally { // finally ä¸­å…³é—­è¾“å…¥æµ
 			try {
 				if (in != null) {
 					in.close();

@@ -14,7 +14,7 @@ public class DiseaseBean implements Serializable {
 	private List<String> contentDetail;
 	
 	/*
-	 * ¹¹Ôìº¯Êı
+	 * constructor
 	 */
 	public DiseaseBean() {
 		name = "default name";

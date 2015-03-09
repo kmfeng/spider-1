@@ -12,13 +12,13 @@ import JavaBeans.DiseaseBean;
 
 public class FileTools {
 	/*
-	 * ½«ÅÀÈ¡µ½µÄ DiseaseBean ÁĞ±íĞ´ÈëÎÄ¼ş
+	 * å°†çˆ¬å–åˆ°çš„ DiseaseBean åˆ—è¡¨å†™å…¥æ–‡ä»¶
 	 */
 	public static void writeDiseaseBeanListToFile(List<DiseaseBean> list,
 			String fileName) {
 
 		/*
-		 * ĞòÁĞ»¯´æ´¢ DiseaseBean ¶ÔÏó
+		 * åºåˆ—åŒ–å­˜å‚¨ DiseaseBean å¯¹è±¡
 		 */
 		try {
 			FileOutputStream fos = new FileOutputStream(fileName);
@@ -49,7 +49,7 @@ public class FileTools {
 			for (DiseaseBean d : list) {
 				fw = new FileWriter(f);
 				fw.write(d.toString());
-				// ²»Ë¢ĞÂµÄ»°ÎŞ·¨Ğ´Èë
+				// ä¸åˆ·æ–°çš„è¯æ— æ³•å†™å…¥
 				fw.flush();
 			}
 
