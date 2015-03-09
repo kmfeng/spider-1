@@ -1,4 +1,4 @@
-package mySpider;
+package downloader;
 
 import java.io.BufferedReader;
 import java.io.IOException;

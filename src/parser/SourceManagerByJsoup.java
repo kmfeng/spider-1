@@ -1,4 +1,4 @@
-package mySpider;
+package parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -153,7 +153,7 @@ public class SourceManagerByJsoup {
 					break;
 				}
 				sb.append(details.get(j + jj).text() + '\n');
-				System.out.println("getContentDetail +++>>> " + "锟斤拷 " + i + "锟斤拷 ----> " + details.get(j + jj).text());
+				System.out.println("getContentDetail +++>>> " + " " + i + " ----> " + details.get(j + jj).text());
 			}
 			jj = jj + sizeEachList.get(i);
 			// 将该目录项下的内容存入 List

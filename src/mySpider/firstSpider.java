@@ -3,10 +3,13 @@ package mySpider;
 import java.util.ArrayList;
 import java.util.List;
 
+import parser.SourceManagerByJsoup;
+
 import JavaBeans.DiseaseBean;
 import Utils.FileTools;
 
 import common.Common;
+import downloader.DownLoader;
 
 public class firstSpider {
 
